@@ -9,14 +9,27 @@ contract ModifierExample{
     uint public myNumber;
 
     mapping(uint=> bool) public myMap;
-    mapping(address=> uint) public myWallet;
+    mapping(address=> uint) public myAddresses;
+
+    function receiveMoney() public payable{
+        myAddresses[msg.sender]+=msg.value;
+
+    }
+
+    function withdrawMoney(uint amount) public {
+        myAddresses[msg.sender]-=amount*(10**18);
+        address MyWallet=msg.sender;
+        payable(MyWallet).transfer(amount*(10**18));
+
+    }
 
     function setValue(uint index, bool value) public{
         myMap[index]=value;
     }
 
     function setMyAddress(address wallet, uint amount) public{
-        myWallet[wallet]=amount;
+        myAddresses[wallet]=amount;
 
     }
+
 }
