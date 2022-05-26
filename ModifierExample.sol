@@ -17,9 +17,19 @@ contract ModifierExample{
     }
 
     function withdrawMoney(uint amount) public {
-        myAddresses[msg.sender]-=amount*(10**18);
+        uint amounttoEther=amount*(10**18);
+
+        require(amounttoEther<=myAddresses[msg.sender],"Not enough money");
+        myAddresses[msg.sender]-=amounttoEther;
         address MyWallet=msg.sender;
-        payable(MyWallet).transfer(amount*(10**18));
+        payable(MyWallet).transfer(amounttoEther);
+
+
+        // requiere(amount*(10**18)<= myAddresses[msg.sender], "No hay fondos suficientes"){
+        //   myAddresses[msg.sender]-=amount*(10**18);
+        // address MyWallet=msg.sender;
+        //payable(MyWallet).transfer(amount*(10**18));
+        //}
 
     }
 
