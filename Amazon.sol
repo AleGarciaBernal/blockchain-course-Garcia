@@ -29,5 +29,18 @@ contract Amazon{
         require(bytes(newName).length>5, "Nombre debe tener 5 chars");
         inventario[newName]=newProduct;
     }
+    //3) Solo el dueño de la tienda puede aumentar la cantidad que tiene un producto
+
+    function addQuantity(uint newQuantity, string memory name)public{
+        require(msg.sender==ownerAddress, "Debe ser el owner para aumentar stock");
+        inventario[name].stock=newQuantity;
+    }
+
+
+
+
+    // ["cocasero",25,5,12]
+    //
+
 
 }
