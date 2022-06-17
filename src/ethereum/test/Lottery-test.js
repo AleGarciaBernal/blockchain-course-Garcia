@@ -9,27 +9,29 @@ contract("Lottery-test", accounts => {
 
     })
 
-    it("enter an account", async () => {
+    it("allows enter an account", async () => {
+
         await instance.enter({from: accounts[1], value: web3.utils.toWei("3", "ether")});//VERIFICA QUE ALGUIEN PUEDA APOSTAR
-        const players = await instance.getPlayers.call();
-        assert.equal(1, players.length)//queremo ver si ha entrado un jugador, que el array sea de tamaño 1
+        //llamamor a a enter y pasamos una billeter en este caso posicion 1, ponemos el value
+        const players = await instance.getPlayers.call(); //creamos una variable players llamando a getPlayers
+        assert.equal(1, players.length)//queremo ver si ha entrado un jugador, que el array sea de tamaño 1 pq solo entro 1
         assert.equal(accounts[1], players[0]);//comparando que sea la misma direccion de billeteras
     })
 
     it("allow multiple players", async () => {
-        await instance.enter({from: accounts[0], value: web3.utils.toWei("3", "ether")});
-        await instance.enter({from: accounts[1], value: web3.utils.toWei("3", "ether")});
-        await instance.enter({from: accounts[2], value: web3.utils.toWei("3", "ether")});
-        const players = await instance.getPlayers.call();
+        await instance.enter({from: accounts[0], value: web3.utils.toWei("3", "ether")});//llamamos 3 veces al metodo1
+        await instance.enter({from: accounts[1], value: web3.utils.toWei("3", "ether")});//2
+        await instance.enter({from: accounts[2], value: web3.utils.toWei("3", "ether")});//3
+        const players = await instance.getPlayers.call();//array de players con metodo getPlsyers
         assert.equal(accounts[0], players[0]);
         assert.equal(accounts[1], players[1]);
         assert.equal(accounts[2], players[2]);
         assert.equal(3, players.length) ///queremo ver si ha entrado un jugador, que el array sea de tamaño 3
     })
-
+/*
     it("Minimun Amount", async () => {
         try {
-            await instance.enter({from: accounts[1], value: web3.utils.toWei("1", "ether")});
+            await instance.enter({from: accounts[1], value: web3.utils.toWei("3", "ether")});
             assert(false);//hacer que falle si no salta al catch
 
         } catch (e) {
@@ -38,7 +40,7 @@ contract("Lottery-test", accounts => {
 
         }
     })
-
+*/
     it("Only Manager can call PickAWinner", async () => {
         try {
             await instance.pickWinner({from: accounts[6]});//hay que mancar desde que cuenta va gastar pq es de escritura/payable
