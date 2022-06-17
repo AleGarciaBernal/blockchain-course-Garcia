@@ -25,6 +25,18 @@ contract("Lottery-test", accounts=>{
         assert.equal(accounts[1],players[1]);
         assert.equal(accounts[2],players[2]);
         assert.equal(3,players.length) ///queremo ver si ha entrado un jugador, que el array sea de tamaño 3
+    })
+
+    it("Minimun Amount", async ()=>{
+        try{
+            await instance.enter({from:accounts[1], value:web3.utils.toWei("3","ether")});
+        }catch (e) {
+            //console.log('ERROERRR',e.reason);
+            assert.equal("Minimo 2 ether papa", e.reason);
+
+        }
+
+
 
 
     })
