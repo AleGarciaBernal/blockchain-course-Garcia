@@ -10,7 +10,7 @@ contract("Lottery-test", accounts=>{
 
         assert.equal(1,players.length)//queremo ver si ha entrado un jugador, que el array sea de tamaño 1
         assert.equal(accounts[1],players[0]);//comparando que sea la misma direccion de billeteras
-
+//testing
     } )
 })
 
