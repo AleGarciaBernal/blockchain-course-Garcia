@@ -43,8 +43,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -81,8 +80,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -108,8 +106,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"alumno_evaluado\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"evento_revision\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_idAlumno\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_nota\",\"type\":\"uint256\"}],\"name\":\"Evaluar\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_idAlumno\",\"type\":\"string\"}],\"name\":\"Revision\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_idAlumno\",\"type\":\"string\"}],\"name\":\"VerNotas\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"VerRevisiones\",\"outputs\":[{\"internalType\":\"string[]\",\"name\":\"\",\"type\":\"string[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"profesor\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Notes.sol\":\"Notes\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Notes.sol\":{\"keccak256\":\"0xd60ef6f7657444103d5d0d6b6fc6aedce8a850338964c2dae33cac70127f3527\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3a12ef8d94da60961b5aaf348130f989ad87fdc83052e43755736a32fe44c7b0\",\"dweb:/ipfs/QmSH67AggfmbhWgQGmZxWGq3KZohagyVmatWgA7a26csXs\"]}},\"version\":1}",
@@ -7450,8 +7447,7 @@
     }
   },
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-06-17T04:39:23.231Z",
-  "networkType": "ethereum",
+  "updatedAt": "2022-06-17T05:05:51.017Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

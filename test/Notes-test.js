@@ -2,30 +2,27 @@ const Notes = artifacts.require("Notes");
 
 contract("Notes", accounts => {
 
-    let instance;
-    beforeEach("Note-test", async () => {
-        instance = await Lottery.new();
+    let instance
 
+    beforeEach("deploy a contract", async () => {
+        instance = await Notes.new();
     })
 
-    it("Evaluar", async () =>{
-        const res = await instance.Evaluar("AleG", 100, {from: accounts[0]})
-        const student = web3.utils.keccak256("AleG")
-        const note = await instance.VerNotas.call("AleG")
+    it("Allows a student to be evaluated", async () =>{
+        const res = await instance.Evaluar("Ken", 100, {from: accounts[0]})
+        const student = web3.utils.keccak256("Ken")
+        const note = await instance.VerNotas.call("Ken")
         assert.equal(student, res.logs[0].args[0])
         assert.equal(100,note)
     })
 
-    it("Solo el profesor puede evaluar",async ()=>{
-        try {
-            await instance.Evaluar({from: accounts[6]});//hay que mancar desde que cuenta va gastar pq es de escritura/payable
-            assert(false);
-        } catch (e) {
-            assert.equal("No tienes permisos para ejecutar esta funcion.", e.reason);//esta entrando al error
+    it("Only allows the owner to evaluate a student", async ()=>{
+        try{
+            const res = await instance.Evaluar("Ken", 100, {from: accounts[8]})
+        }catch(e){
+            assert.equal("No tienes permisos para ejecutar esta funcion.", e.reason)
         }
     })
-
-    //const riki=web3.utils.keccak256("AleG") console.log('RIKI',riki)
 
 
 
