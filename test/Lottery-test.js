@@ -41,7 +41,7 @@ contract("Lottery-test", accounts => {
 
     it("Only Manager can call PickAWinner", async () => {
         try {
-            await instance.pickWinner({from: accounts[0]});//hay que mancar desde que cuenta va gastar pq es de escritura/payable
+            await instance.pickWinner({from: accounts[6]});//hay que mancar desde que cuenta va gastar pq es de escritura/payable
             assert(false);
         } catch (e) {
             assert.equal("you are not the manager.", e.reason);//esta entrando al error
@@ -50,13 +50,30 @@ contract("Lottery-test", accounts => {
     })
 
     it("Send Money To the Winner and Reset players array", async () => {
-        const initialBalancePlayer=await web3.eth.getBalance(accounts[1])//revisamo el balance del jugador antes de jugar
+        //const initialBalancePlayer=await web3.eth.getBalance(accounts[1])//revisamo el balance del jugador antes de jugar
         await instance.enter({from: accounts[1], value: web3.utils.toWei("5", "ether")});//cuenta 1 envia 5 ether
+
+        const initialBalancePlayer=await web3.eth.getBalance(accounts[1])//revisamo el balance del jugador antes de jugar
         const initialBalanceLottery=await web3.eth.getBalance(instance.address)//guardamos el balance del poso
+        //console.log('initialBalancePlayer',initialBalancePlayer)
+        //console.log('initialBalanceLottery',initialBalanceLottery)
+
         await instance.pickWinner({from:accounts[0]}); //ejecutamos pickAWinner
+
         const finalBalancePlayer=await web3.eth.getBalance(accounts[1])//revisamo el balance del jugador despues de jugar
-        const diferencia=finalBalancePlayer-initialBalanceLottery;
-        assert(diferencia>web3.utils.toWei("4.7","ether"))
+        const finalBalanceLottery=await web3.eth.getBalance(instance.address)
+       /* console.log('finalBalancePlayer',finalBalancePlayer)
+        console.log('finalBalanceLottery',finalBalanceLottery)
+
+        console.log('initialBalancePlayer',initialBalancePlayer)
+        console.log('initialBalanceLottery',initialBalanceLottery)
+*/
+        const total=await initialBalancePlayer+initialBalanceLottery;
+        assert(finalBalancePlayer>total)
+
+        const players = await instance.getPlayers.call();
+        assert.equal(finalBalancePlayer,total)
+        assert.equal(0,players.length);
     })
 })
 
