@@ -29,15 +29,23 @@ contract("Lottery-test", accounts=>{
 
     it("Minimun Amount", async ()=>{
         try{
-            await instance.enter({from:accounts[1], value:web3.utils.toWei("3","ether")});
+            await instance.enter({from:accounts[1], value:web3.utils.toWei("1","ether")});
+            assert(false);//hacer que falle si no salta al catch
+
         }catch (e) {
             //console.log('ERROERRR',e.reason);
-            assert.equal("Minimo 2 ether papa", e.reason);
+            assert.equal("Minimo 2 ether papa", e.reason);//comaparacion con el .sol
 
         }
+    })
 
-
-
+    it("Only Manager can call PickAWinner", async ()=>{
+        try {
+            await instance.pickWinner({from:accounts[0]});//hay que mancar desde que cuenta va gastar pq es de escritura/payable
+            assert(false);
+        }catch (e) {
+            assert.equal("you are not the manager.", e.reason);//esta entrando al error
+        }
 
     })
 })
