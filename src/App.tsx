@@ -8,7 +8,7 @@ import * as net from "net";
 function App() {
 
   const [contract, setContract] = useState<any>('');
-
+  //variables
   const [manager, setManager] = useState<any>('');
   const [players, setPlayers] = useState<any>([]);
   const [balance, setBalance] = useState<any>('');
@@ -28,12 +28,9 @@ function App() {
   }, [])
 
   const loadBlockchainData = async () => {
-
     //const contractDeployed;
-
     // @ts-ignore
     const Web3 = window.web3;
-
     // Rinkeby 4, Ganache 5777, BSC 97
     const networkData = contractLottery.networks['5777'];
     console.log('networkData:', networkData);
@@ -43,14 +40,16 @@ function App() {
       const address = networkData.address;
       console.log('address: ', address);
       const contractDeployed = new Web3.eth.Contract(abi, address);
+
+      const players = await contractDeployed.methods.getPlayers().call();
+      setPlayers(players);
+      const manager = await contractDeployed.methods.manager().call();
+      setManager(manager)
+      const balance = await Web3.eth.getBalance(contractDeployed.options.address)
+      setBalance(balance)
+
       await setContract(contractDeployed)
 
-      const players = await contract.methods.getPlayers().call();
-      setPlayers(players);
-      const manager = await contract.methods.manager().call();
-      setManager(manager)
-      const balance = await Web3.eth.getBalance(contract.options.address)
-      setBalance(balance)
     }
 
   }
@@ -63,7 +62,8 @@ function App() {
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
           <p>Hi React, Truffle, Firebase</p>
-          <button onClick={() => connectWallet()}>Connect</button>
+
+          <button onClick={() => connectWallet()}>CONNECT</button>
 
           <p>PLAYERS: {players.length}</p>
           <p>BALANCE: {balance}</p>
