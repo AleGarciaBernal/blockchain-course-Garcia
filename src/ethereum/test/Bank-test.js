@@ -18,10 +18,14 @@ contract("Bank-test", accounts => {
 
     it("Only owner can close bank", async () => {
         try {
-            await instance.closeOrOpenBank(true,{from: accounts[6]});//hay que mancar desde que cuenta va gastar pq es de escritura/payable
+            await instance.closeOrOpenBank(true,{from: accounts[6]});
+            //no podia hacer un create account por que no
+            //avanzamos strcucts, Object values
+            //como mandar un objeto y como instanciarlo
             assert(false);
         } catch (e) {
-            assert.equal("You are not the owner.", e.reason);//esta entrando al error
+            assert.equal("You are not the owner.", e.reason);
+            //no vimos ejemplos con varios modifiers
         }
 
     })
@@ -29,7 +33,6 @@ contract("Bank-test", accounts => {
    // 4) Realizar el testing el deposito minimo para una cuenta bancaria debe ser mayor a 2 ETH
     it("require a minimum deposit of ether", async () => {
         try {
-
             await instance.depositMoney(2,{from: accounts[1], value: web3.utils.toWei("1", "ether")});
             assert(false);
         } catch (e) {
@@ -42,11 +45,9 @@ contract("Bank-test", accounts => {
 
     it('nombre deber ser mayor a 5 chars', async ()=>{
         //const juan=1,"Juan",10,true;
-        const juan=await instance.createAccount(1,"Juan",10,true);
-
+        const juan=await instance.createAccount(1,"Juan",10,true);//no acepta esto
         assert.equal(juan.nombre.length,5);
-
-
+        //No se podia porque no avanzamos :(((
 
 
     })
@@ -55,6 +56,7 @@ contract("Bank-test", accounts => {
 
     it('Only Owner Can Block', async () => {
         //const juan=instance.createAccount(1,"juan",100,true);
+        //usar stucts :(
         const cuenta=await instance.listAccounts.call(1);
         await instance.blockAccount(1,{from:accounts[0]});
         assert.equal(cuenta.enable,false);
@@ -67,6 +69,7 @@ contract("Bank-test", accounts => {
             assert(false);
         } catch (e) {
             assert.equal("You are not the owner.", e.reason);//esta entrando al error
+            //varios modifiers
         }
 
     })
