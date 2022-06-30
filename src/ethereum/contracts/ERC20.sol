@@ -30,4 +30,39 @@ contract ERC20 is IERC20, IERC20Metadata {
     function decimals() public view override returns (uint8) { //18 decimales
         return 18;
     }
+
+    //event Transfer(address indexed from, address indexed to, uint256 value);
+    //event Approval(address indexed owner, address indexed spender, uint256 value)
+
+
+    function totalSupply() public view override returns (uint256) {
+        return _totalSupply;
+    }
+
+    function balanceOf(address account) public view override returns (uint256) { //balance de alguen
+        return _balances[account];
+    }
+
+    function transfer(address to, uint256 amount) public override returns (bool) { //enviar tokens a una direccion
+        address owner = msg.sender;
+        _transfer(owner, to, amount);//funcion interna
+        return true;
+    }
+
+    function allowance(address owner, address spender) public view override  returns (uint256) {//cuantos tokens he asignado a x wallet
+        return _allowances[owner][spender];
+    }
+
+    function approve(address spender, uint256 amount) public override returns (bool) {
+        address owner = msg.sender;
+        _approve(owner, spender, amount);//funcion interna
+        return true;
+    }
+
+    function transferFrom(address from, address to, uint256 amount) public override returns (bool) { //allowance...
+        address spender = msg.sender;//OJITO ESTA FUNCION
+        _spendAllowance(from, spender, amount);
+        _transfer(from, to, amount);
+        return true;
+    }
 }
