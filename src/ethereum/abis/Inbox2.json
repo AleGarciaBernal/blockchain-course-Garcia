@@ -23,8 +23,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -37,8 +36,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -64,8 +62,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"initialMessage\",\"type\":\"string\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getMessage\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"message\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"newMessage\",\"type\":\"string\"}],\"name\":\"setMessage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/src/ethereum/contracts/Inbox2.sol\":\"Inbox2\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/src/ethereum/contracts/Inbox2.sol\":{\"keccak256\":\"0x73112ec0d54a43e8d95445ac073a477cf537283c68b3f2c1fb8120bd962c232d\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://a55ce201c8502cf052edde0a79f3513b62bc79eb4de5f1c1caadd7f75666a177\",\"dweb:/ipfs/QmPm8F5tRNxPECbFjJrwco3WbTRRPHFMMh4F1EkT6HfBUo\"]}},\"version\":1}",
@@ -6141,13 +6138,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xDE5015E52AF677572eF2247031Ba9Bd91b052653",
-      "transactionHash": "0xf0290c74debbea185df18d65c1605bbe98a68b1c2156b979364e0e90956c91a3"
+      "address": "0x03a7834a2F2bF9D60eD2f53d0A6c132b204E7d07",
+      "transactionHash": "0x3796b9905cd86a86b9250e0c0d822f79d1a4ca9359dbae2161fa3a150bb3d34b"
     }
   },
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-06-19T15:09:18.429Z",
-  "networkType": "ethereum",
+  "updatedAt": "2022-06-29T22:57:59.478Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

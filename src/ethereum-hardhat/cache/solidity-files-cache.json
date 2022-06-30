@@ -1,0 +1,40 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\LENOVO RYZEN 7\\OneDrive\\Documentos\\semestre5\\modulo3\\blockchain\\blockchain-course-Garcia\\src\\ethereum-hardhat\\contracts\\Lottery.sol": {
+      "lastModificationDate": 1656545650833,
+      "contentHash": "7ab09355919ea93e9ecb22cf1799c4e6",
+      "sourceName": "src/ethereum-hardhat/contracts/Lottery.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Lottery"
+      ]
+    }
+  }
+}
