@@ -3,102 +3,161 @@ import logo from './logo.svg';
 import './App.css';
 import {connectWallet, initialize} from "./ethereum/web3";
 //import contractLottery from "./ethereum/abis/Lottery.json"
-import contractLottery from "./ethereum-hardhat/artifacts/src/ethereum-hardhat/contracts/Lottery.sol/Lottery.json"
-
-import * as net from "net";
+import contractLottery from "./ethereum-hardhat/artifacts/src/ethereum-hardhat/contracts/Main.sol/Main.json"
 function App() {
-  const [contract, setContract] = useState<any>('');
-  const [manager, setManager] = useState<any>('');
-  const [players, setPlayers] = useState<any>([]);
+
+  const [contractDeployed, setContract] = useState<any>('');
+  const [address, setAddress] = useState<any>('');
+  const [quantity, setQuantity] = useState<any>('');
   const [balance, setBalance] = useState<any>('');
+  const [userBalance, setUserBalance] = useState<any>('');
+  const [tokens, setTokens] = useState<any>('');
   const [value, setValue] = useState<any>('');
-  const [message, setMessage] = useState<any>('');
-  useEffect( ()=> {
+  const [contractAddress, setContractAddress] = useState<any>('');
+  const [tokenprice, setTokenPrice] = useState<any>('');
+
+
+
+  useEffect( () => {
     // @ts-ignore
     if(window.web3) {
-      initialize()
-      loadBlockchainData()
+      initialize();
+      loadBlockchainData();
     }
   }, [])
-  const loadBlockchainData = async () => {
-    //const contractDeployed;
-    // @ts-ignore
-    const Web3 = window.web3;
-    // Rinkeby 4, Ganache 5777, BSC 97
-    //const networkData = contractLottery.networks['5777'];
-    //console.log('networkData:', networkData);
-    //if(networkData) {
-      const abi = contractLottery.abi;
-      //const address = networkData.address;
-      //console.log('address: ', 0x057DFDCD1fe09E449b4C06bf176B11380cd758F3);
-      const contractDeployed = new Web3.eth.Contract(abi,'0x057DFDCD1fe09E449b4C06bf176B11380cd758F3');
 
-      const players = await contractDeployed.methods.getPlayers().call();
-      setPlayers(players);
-      const manager = await contractDeployed.methods.manager().call();
-      setManager(manager)
-      const balance = await Web3.eth.getBalance(contractDeployed.options.address)
-      setBalance(balance)
-      setContract(contractDeployed)
-   // }
-  }
-  const loadBalance = async () => {
+  const loadBlockchainData = async () => {
     // @ts-ignore
     const Web3 = window.web3;
-    const balance = await Web3.eth.getBalance(contract.options.address)
-    setBalance(balance)
+    const abi = contractLottery.abi;
+    const contractDeployed = new Web3.eth.Contract(abi, '0xFa60cf40c726e8F10A750708AC4e19a69d69a400');
+    setContract(contractDeployed);
+
+
   }
-  const loadPlayers = async () => {
-    const players = await contract.methods.getPlayers().call();
-    setPlayers(players);
-  }
-  const onEnter = async () => {
+
+  const buy = async () => {
     // @ts-ignore
     const Web3 = window.web3;
     const accounts = await Web3.eth.getAccounts()
-    setMessage("waiting on transaction success...")
-    await contract.methods.enter().send({
+    await contractDeployed.methods.buyTokens(address,quantity ).send({
       from: accounts[0],
       value: Web3.utils.toWei(value, "ether")
     })
-    setMessage("you have been entered...")
-    loadBalance();
-    loadPlayers();
+    await getContractAddress()
   }
-  const onPickWinner = async () => {
+
+  const getUserBalance = async () => {
+    const usrBalance= await contractDeployed.methods.balanceAccount(address).call()
+    setUserBalance(usrBalance)
+
+
+  }
+
+
+
+  const getBalance = async () => {
+    // @ts-ignore
+    const Web3 = window.web3;
+    const balance = await Web3.eth.getBalance(address)
+    setBalance(balance)
+  }
+
+  const getContractAddress = async () => {
+    const contractAddress = await contractDeployed.methods.getContractAddress().call();
+    setContractAddress(contractAddress)
+
+  }
+  const increment = async () => {
     // @ts-ignore
     const Web3 = window.web3;
     const accounts = await Web3.eth.getAccounts()
-    setMessage("waiting on transaction success...")
-    await contract.methods.pickWinner().send({
+    await contractDeployed.methods.generetaTokens(quantity).send({
       from: accounts[0]
     })
-    setMessage("A winner has been picked!")
-    loadBalance();
-    loadPlayers();
+    await getTokens();
+
   }
+  const getTokens = async () => {
+    const tokenBalance = await contractDeployed.methods.getTotalSupply().call();
+    setTokens(tokenBalance)
+
+  }
+  const getTokenPrice = async () => {
+    // @ts-ignore
+    const tokenprice = await contractDeployed.methods.priceTokens(quantity).call()
+    setTokenPrice(tokenprice)
+
+  }
+
   return (
       <div className="App">
-        <header className="App-header">
+
+        <div>
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <p>Hi React, Truffle, Firebase</p>
-          <button onClick={() => connectWallet()} className="btn btn-success">Connect</button>
-          <button onClick={ () => onPickWinner() } className="btn btn-success">Pick Winner</button>
-          <p>PLAYERS: {players.length}</p>
-          <p>BALANCE: {balance}</p>
-          <p>MANAGER: {manager}</p>
-          <p>Monto minimo mayor a 2 ETH</p>
-          <input type="text" value={value} onChange={ (event) => { setValue(event.target.value) } }/>
-          <button onClick={ () => { onEnter() } } className="btn btn-warning">Enter</button>
-          <p>{message}</p>
-        </header>
+          <h1>$$$$$$$$$$$-KYBERCOIN-$$$$$$$$$$$</h1>
+          <label>
+            Destination Adress
+            <input id='addressField' type="text" value={address} onChange={ (event) => { setAddress(event.target.value) } } />
+          </label>
+        </div>
+        <div>
+          <label>
+            Tokens Quantity (1 token = 1 ether)
+            <input id='quantityField' type="number" value={quantity} onChange={ (event) => { setQuantity(event.target.value) } } />
+          </label>
+        </div>
+        <div>
+          <label>
+            Value input
+            <input id='quantityField' type="text" value={value} onChange={ (event) => { setValue(event.target.value) } } />
+          </label>
+        </div>
+        <button onClick={() => buy()} className="btn btn-success">BUY NOW</button>
+
+        <p>GOERLI TESTNET</p>
+
+        <button onClick={getContractAddress} className="btn btn-info">Contract Address</button>
+        <p>CONTRACT ADDRESS: {contractAddress}</p>
+
+
+        <button onClick={getTokens} className="btn btn-info">Contract Balance</button>
+        <p>CONTRACT BALANCE: {tokens}</p>
+        <div>
+
+          <p>+++++GET USER BALANCE+++++</p>
+          <label>
+            User Address
+            <input id='addressField' type="text" value={address} onChange={ (event) => { setAddress(event.target.value) } } />
+          </label>
+          <button onClick={() => getUserBalance()} className="btn btn-info">User Balance</button>
+          <p>User BALANCE: {userBalance}</p>
+        </div>
+
+        <div>
+          <h1>Create new Tokens</h1>
+          <input id='addressField' type="number" value={quantity} onChange={ (event) => { setQuantity(event.target.value) } } />
+          <button onClick={increment} className="btn btn-info">Create tokens</button>
+        </div>
+        <p>TOKEN BALANCE: {tokens} </p>
+        <div>
+          <h1>Token Price on wei</h1>
+          <input id='addressField' type="number" value={quantity} onChange={ (event) => { setQuantity(event.target.value) } } />
+          <button onClick={getTokenPrice} className="btn btn-info">Get price</button>
+          <p>Token price: {tokenprice}</p>
+        </div>
+
+        <h1>Token Price on ether</h1>
+        <input id='addressField' type="number" value={quantity} onChange={ (event) => { setQuantity(event.target.value) } } />
+        <button onClick={getTokenPrice} className="btn btn-info">Get price</button>
+        <p>Token price: {tokenprice/10**18}</p>
+
+        <button onClick={() => connectWallet()} className="btn btn-warning">Connect Metamask Wallet</button>
       </div>
+
+
+
   );
-
-
 }
-//bootstrap
+
 export default App;

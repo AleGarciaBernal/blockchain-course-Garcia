@@ -35,6 +35,151 @@
       "artifacts": [
         "Lottery"
       ]
+    },
+    "C:\\Users\\LENOVO RYZEN 7\\OneDrive\\Documentos\\semestre5\\modulo3\\blockchain\\blockchain-course-Garcia\\src\\ethereum-hardhat\\contracts\\ERC20.sol": {
+      "lastModificationDate": 1656604447082,
+      "contentHash": "3ececabe5dd31d7e257743d34fe81342",
+      "sourceName": "src/ethereum-hardhat/contracts/ERC20.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC20.sol",
+        "./IERC20Metadata.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "C:\\Users\\LENOVO RYZEN 7\\OneDrive\\Documentos\\semestre5\\modulo3\\blockchain\\blockchain-course-Garcia\\src\\ethereum-hardhat\\contracts\\IERC20.sol": {
+      "lastModificationDate": 1656604447078,
+      "contentHash": "9d7432904ed47a68a0d09171ccdc3fa2",
+      "sourceName": "src/ethereum-hardhat/contracts/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "C:\\Users\\LENOVO RYZEN 7\\OneDrive\\Documentos\\semestre5\\modulo3\\blockchain\\blockchain-course-Garcia\\src\\ethereum-hardhat\\contracts\\IERC20Metadata.sol": {
+      "lastModificationDate": 1656604447067,
+      "contentHash": "79703183cfdf177a78a8398dffbca504",
+      "sourceName": "src/ethereum-hardhat/contracts/IERC20Metadata.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20Metadata"
+      ]
+    },
+    "C:\\Users\\LENOVO RYZEN 7\\OneDrive\\Documentos\\semestre5\\modulo3\\blockchain\\blockchain-course-Garcia\\src\\ethereum-hardhat\\contracts\\Main.sol": {
+      "lastModificationDate": 1656612174992,
+      "contentHash": "11dac904488c1849b34493cca3dc0b0a",
+      "sourceName": "src/ethereum-hardhat/contracts/Main.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./ERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Main"
+      ]
     }
   }
 }

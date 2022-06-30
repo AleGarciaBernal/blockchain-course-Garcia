@@ -27,7 +27,7 @@ contract Main {
         _token.transfer(client, amount); //llamamos a transfer del erc20
     }
 
-    function generetaTokens(uint256 amount) public { //modifier
+    function generateTokens(uint256 amount) public { //modifier
         _token.increaseTotalSupply(contractAddress, amount);
     }
 
