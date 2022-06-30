@@ -65,4 +65,37 @@ contract ERC20 is IERC20, IERC20Metadata {
         _transfer(from, to, amount);
         return true;
     }
+
+    function _transfer(address from, address to, uint256 amount) internal { //interna
+        require(from != address(0), "ERC20: transfer from the zero address."); //si es diferente de address 0?
+        require(to != address(0), "ERC20: transfer to the zero address.");//poner direcciones validas
+
+        uint256 fromBalance = _balances[from]; //ver cuantos tokens tiene para si le alcanza
+        require(fromBalance >= amount, "ERC20: transfer amount exceeds balance.");
+
+    unchecked { //ahorrar
+        _balances[from] = fromBalance - amount; //resatmos la cantidad
+    }
+        _balances[to] += amount;//sumamos
+        emit Transfer(from, to, amount);
+    }
+
+    function _approve(address owner, address spender, uint256 amount) internal {
+        require(owner != address(0), "ERC20: approve from the zero address.");
+        require(spender != address(0), "ERC20: approve to the zero address.");
+
+        _allowances[owner][spender] = amount; //mapping
+        emit Approval(owner, spender, amount);//lanzar evento
+    }
+
+    function _spendAllowance(address owner, address spender, uint256 amount) internal {//gastar los tokens que le dio el otro
+        uint256 currentAllowance = allowance(owner, spender); //sacamos cuanto tiene
+        if(currentAllowance != type(uint256).max) { //cambiar esta parte(?)
+            require(currentAllowance >= amount, "ERC20: insufficient allowance.");
+        unchecked { //ahorrar costos de gas
+            _approve(owner, spender, currentAllowance - amount); //rebajar su monto
+        }
+        }
+    }
 }
+
