@@ -97,5 +97,25 @@ contract ERC20 is IERC20, IERC20Metadata {
         }
         }
     }
-}
 
+    function _mint(address account, uint256 amount) internal { //creacion de tokensy darle a una cuenta
+        require(account != address(0), "ERC: mint to the zero address.");
+        _totalSupply += amount;
+        _balances[account] += amount;
+        emit Transfer(address(0), account, amount);
+    }
+
+    function _burn(address account, uint256 amount) internal { //destruccion de tokens
+        require(account != address(0), "ERC20 burn from the zero address.");
+        uint256 accountBalance = _balances[account]; //balance de la cuenta que quiere destruir
+        require(accountBalance >= amount, "ERC20 burn amount exceeds balance."); //no puede destruir tokens que no tiene
+        _balances[account] = accountBalance - amount;
+        _totalSupply -= amount;
+
+        emit Transfer(account, address(0), amount);
+    }
+
+    function increaseTotalSupply(address account, uint256 amount) public {
+        _mint(account, amount);
+    }
+}
