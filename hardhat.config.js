@@ -21,20 +21,18 @@ module.exports = {
   networks:{
     goerly:{
       url:'https://eth-goerli.g.alchemy.com/v2/doyryVZnBjYt3NNUy7cCi291aW_OA81O',
-      accounts:['15393d8984ca1f279521b0066f59795e20917490e5cc0fc579060521113d4928']
+      accounts:['']
     },
     rinkeby:{
       url:'https://eth-rinkeby.alchemyapi.io/v2/yecPXiXxeb7padF0P0uEIR2SNuGV_BRp',
-      accounts:['15393d8984ca1f279521b0066f59795e20917490e5cc0fc579060521113d4928']
+      accounts:['']
     },
-    bsc:{
-      url:'https://bsc-dataseed.binance.org/',
-      accounts:{
-        mnemonic:''
-      }
+    eth: {
+      url:'https://eth-mainnet.g.alchemy.com/v2/q1pQZmOAJkChYaJtmTC6ikfAywKk_8S3',
+      accounts:['']
     }
-  },
 
+  },
   paths:{
     sources:'./src/ethereum-hardhat/contracts',
     tests:'./src/ethereum-hardhat/test',

@@ -51,6 +51,10 @@ module.exports = {
       bscTestnet:{
           provider:()=> new HDWalletProvider (mnemonic,'https://data-seed-prebsc-1-s1.binance.org:8545/'),
           network_id: 97
+      },
+      eth: {
+          provider: () => new HDWalletProvider(mnemonic,'https://mainnet.infura.io/v3/72e698e22dd2489b9989069ce0d6447f'),
+          network_id: 1
       }
     //
     // An additional network, but with some advanced options…
