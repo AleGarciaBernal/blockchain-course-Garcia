@@ -19,7 +19,7 @@
  */
 
 const HDWalletProvider = require('truffle-hdwallet-provider');
-const mnemonic = 'chair frame merge refuse only special embrace faith wrong make sponsor dog';
+const mnemonic = '';
 
 module.exports = {
   /**
